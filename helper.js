@@ -23,17 +23,23 @@
         
         method: "POST", 
         body: JSON.stringify(item),
-        headers: new Headers({
+        headers: {Authorization: "Basic " + btoa(username + ':' + password),
+      
+          
           "Content-Type": "application/json" 
-        },
-        {Authorization: "Basic " + btoa(username + ':' + password)
-    })
+        }
+        
       });
     
       return response;
   }
 
   getItem = async id => {
-    const response = await fetch(url + id); 
+    const response = await fetch(url + id, 
+      {
+      headers: 
+      {Authorization: "Basic " + btoa(username + ':' + password)
+    } 
+  }); 
     return await response.json(); 
   };

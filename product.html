@@ -12,7 +12,7 @@
   <body>
 
     <div class="container">
-        <div class="row" id="item-details">
+        <div class="row mt-5" id="item-details">
 
         </div>
     </div>
@@ -27,13 +27,25 @@
     
     <script>
         window.onload = async () => {
-            const itemUrl = new URLSearchParams(windo.location.search);
-            const itemId = itemUrl.get("id");
+            const itemUrl = new URLSearchParams(window.location.search);
+            const id = itemUrl.get("id");
             const item = await getItem(id);
             const details = document.querySelector("#item-details");
             details.innerHTML = `
-            <div>${item.name} 
-                <img src="${item.imageUrl}>
+                <div class="card text-success border-success mb-3" style="max-width: 540px;">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                      <img src="${item.imageUrl}" class="card-img" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">${item.name}</h5>
+                        <p class="card-text">${item.description}</p>
+                        <p class="card-text"><small class="text-muted">Updated on: ${item.updatedAt}</small></p>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-success" onclick="editItem()">Edit</button>
                 </div>`
         };
     </script>

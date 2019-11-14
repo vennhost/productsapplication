@@ -30,19 +30,20 @@
         window.onload = async () => {
            const items = await loadItems();
             console.log("Items", items)
-            const itemDiv = document.querySelector("#item-wrap");
+
+            let itemDiv = document.querySelector("#item-wrap");
             
-            if (items.lenght > 0){
+            //if (items.lenght >= 0){
             itemDiv.innerHTML = items.map(item => 
                 `
-                <div class="col-md-3">${item.name}
-                    <img src="${item.imageurl}"><span>${item.price}
-                    </div>`
+                <div class="col-md-4"><a href="product.html?id=${item._id}"><h3>${item.name}</h3></a>
+                    <img src="${item.imageUrl}" width="100%"><span>Amount: $${item.price}</span>
+                </div>`
             )
             .join("");
-            } else {
+          /*  } else {
                 itemDiv.innerText = "No item right now!";
-            }
+            } */
         }
     </script>
 
